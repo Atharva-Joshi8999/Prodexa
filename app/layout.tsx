@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/themeProvider";
 import Footer from "@/components/footer";
 import { ClerkProvider } from "@clerk/nextjs";
+import syncUser from "@/lib/syncusers";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -17,11 +18,12 @@ export const metadata: Metadata = {
   description: "View and manage your feedback in one place",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  await syncUser();
   return (
     <ClerkProvider>
     <html lang="en" suppressHydrationWarning>
