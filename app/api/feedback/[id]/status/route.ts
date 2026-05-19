@@ -1,5 +1,6 @@
 import { STATUS_ORDER } from "@/app/data/status-data";
 import prisma from "@/lib/prisma";
+
 import { useAuth } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
@@ -22,7 +23,7 @@ export async function PATCH(
       },
     });
 
-    if (!user || user.role !== "admin") {
+    if (!user || user.role !== "Admin") {
       return NextResponse.json(
         {
           error: "Admin access required",

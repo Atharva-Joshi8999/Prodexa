@@ -6,47 +6,49 @@ export const STATUS_ORDER = [
   "in_progress",
   "completed",
 ];
+
 export const STATUS_GROUPS = {
   under_review: {
     title: "Under Review",
-    description: "New suggestions being evaluated",
+    description: "Ideas being evaluated",
     icon: Eye,
-    color: "border-gray-400 dark:border-gray-500",
+    color: "border-white/10",
     bgColor:
-      "bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900/50 dark:to-gray-800/50",
-    textColor: "text-gray-700 dark:text-gray-300",
-    countColor: "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300",
+      "bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg",
+    textColor: "text-gray-300",
+    countColor: "bg-white/10 text-gray-300",
   },
+
   planned: {
     title: "Planned",
-    description: "Features we're planning to work on",
+    description: "Ready for development",
     icon: ListCheck,
-    color: "border-blue-500",
+    color: "border-blue-500/30",
     bgColor:
-      "bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30",
-    textColor: "text-blue-700 dark:text-blue-300",
-    countColor: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300",
+      "bg-gradient-to-br from-blue-500/10 to-indigo-500/10 backdrop-blur-xl border border-blue-500/20 shadow-lg",
+    textColor: "text-blue-400",
+    countColor: "bg-blue-500/20 text-blue-300",
   },
+
   in_progress: {
     title: "In Progress",
-    description: "Currently being developed",
+    description: "Currently building",
     icon: Clock,
-    color: "border-yellow-500",
+    color: "border-yellow-500/30",
     bgColor:
-      "bg-gradient-to-br from-yellow-50 to-amber-50 dark:from-yellow-900/30 dark:to-amber-900/30",
-    textColor: "text-yellow-700 dark:text-yellow-300",
-    countColor:
-      "bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-300",
+      "bg-gradient-to-br from-yellow-500/10 to-orange-500/10 backdrop-blur-xl border border-yellow-500/20 shadow-lg",
+    textColor: "text-yellow-400",
+    countColor: "bg-yellow-500/20 text-yellow-300",
   },
+
   completed: {
     title: "Completed",
-    description: "Recently shipped features",
+    description: "Successfully shipped",
     icon: CheckCircle,
-    color: "border-green-500",
+    color: "border-green-500/30",
     bgColor:
-      "bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30",
-    textColor: "text-green-700 dark:text-green-300",
-    countColor:
-      "bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300",
+      "bg-gradient-to-br from-green-500/10 to-emerald-500/10 backdrop-blur-xl border border-green-500/20 shadow-lg",
+    textColor: "text-green-400",
+    countColor: "bg-green-500/20 text-green-300",
   },
 };
