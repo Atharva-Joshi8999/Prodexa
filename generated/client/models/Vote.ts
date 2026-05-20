@@ -222,6 +222,7 @@ export type VoteOrderByWithRelationInput = {
 
 export type VoteWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  userId_postId?: Prisma.VoteUserIdPostIdCompoundUniqueInput
   AND?: Prisma.VoteWhereInput | Prisma.VoteWhereInput[]
   OR?: Prisma.VoteWhereInput[]
   NOT?: Prisma.VoteWhereInput | Prisma.VoteWhereInput[]
@@ -229,7 +230,7 @@ export type VoteWhereUniqueInput = Prisma.AtLeast<{
   postId?: Prisma.IntFilter<"Vote"> | number
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   post?: Prisma.XOR<Prisma.PostScalarRelationFilter, Prisma.PostWhereInput>
-}, "id">
+}, "id" | "userId_postId">
 
 export type VoteOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -297,6 +298,11 @@ export type VoteListRelationFilter = {
 
 export type VoteOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type VoteUserIdPostIdCompoundUniqueInput = {
+  userId: number
+  postId: number
 }
 
 export type VoteCountOrderByAggregateInput = {

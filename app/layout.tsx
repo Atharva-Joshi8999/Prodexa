@@ -43,10 +43,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   await syncUser();
-  return (
-    <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} min-h-screen flex flex-col antialiased font-sans`}>
+return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} min-h-screen flex flex-col antialiased font-sans`}>
+        <ClerkProvider>          {/* ← moved inside body */}
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
@@ -59,8 +59,8 @@ export default async function RootLayout({
             </main>
             <Footer />
           </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }
