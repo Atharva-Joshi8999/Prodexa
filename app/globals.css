@@ -669,3 +669,24 @@
   border-color: rgba(139,92,246,0.5);
   box-shadow: 0 4px 16px rgba(139,92,246,0.25);
 }
+
+/* ════════════════════════════════════════
+   FLOATING NAVBAR
+════════════════════════════════════════ */
+.navbar-floating {
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+.navbar-scrolled {
+  box-shadow: 0 8px 40px -8px rgba(0, 0, 0, 0.15);
+}
+.dark .navbar-scrolled {
+  box-shadow: 0 8px 40px -8px rgba(0, 0, 0, 0.5);
+}
+
+/* ════════════════════════════════════════
+   ADMIN TABLE ENHANCEMENTS
+════════════════════════════════════════ */
+.admin-table-row-editing {
+  background: rgba(99, 102, 241, 0.04);
+  border-left: 2px solid rgba(99, 102, 241, 0.3);
+}
