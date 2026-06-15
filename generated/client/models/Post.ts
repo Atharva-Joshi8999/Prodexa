@@ -29,11 +29,13 @@ export type AggregatePost = {
 export type PostAvgAggregateOutputType = {
   id: number | null
   authorId: number | null
+  projectId: number | null
 }
 
 export type PostSumAggregateOutputType = {
   id: number | null
   authorId: number | null
+  projectId: number | null
 }
 
 export type PostMinAggregateOutputType = {
@@ -43,6 +45,7 @@ export type PostMinAggregateOutputType = {
   category: string | null
   status: $Enums.PostStatus | null
   authorId: number | null
+  projectId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -54,6 +57,7 @@ export type PostMaxAggregateOutputType = {
   category: string | null
   status: $Enums.PostStatus | null
   authorId: number | null
+  projectId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -65,6 +69,7 @@ export type PostCountAggregateOutputType = {
   category: number
   status: number
   authorId: number
+  projectId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -74,11 +79,13 @@ export type PostCountAggregateOutputType = {
 export type PostAvgAggregateInputType = {
   id?: true
   authorId?: true
+  projectId?: true
 }
 
 export type PostSumAggregateInputType = {
   id?: true
   authorId?: true
+  projectId?: true
 }
 
 export type PostMinAggregateInputType = {
@@ -88,6 +95,7 @@ export type PostMinAggregateInputType = {
   category?: true
   status?: true
   authorId?: true
+  projectId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -99,6 +107,7 @@ export type PostMaxAggregateInputType = {
   category?: true
   status?: true
   authorId?: true
+  projectId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -110,6 +119,7 @@ export type PostCountAggregateInputType = {
   category?: true
   status?: true
   authorId?: true
+  projectId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -208,6 +218,7 @@ export type PostGroupByOutputType = {
   category: string
   status: $Enums.PostStatus
   authorId: number
+  projectId: number
   createdAt: Date
   updatedAt: Date
   _count: PostCountAggregateOutputType | null
@@ -242,9 +253,11 @@ export type PostWhereInput = {
   category?: Prisma.StringFilter<"Post"> | string
   status?: Prisma.EnumPostStatusFilter<"Post"> | $Enums.PostStatus
   authorId?: Prisma.IntFilter<"Post"> | number
+  projectId?: Prisma.IntFilter<"Post"> | number
   createdAt?: Prisma.DateTimeFilter<"Post"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Post"> | Date | string
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
   votes?: Prisma.VoteListRelationFilter
 }
 
@@ -255,9 +268,11 @@ export type PostOrderByWithRelationInput = {
   category?: Prisma.SortOrder
   status?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   author?: Prisma.UserOrderByWithRelationInput
+  project?: Prisma.ProjectOrderByWithRelationInput
   votes?: Prisma.VoteOrderByRelationAggregateInput
 }
 
@@ -271,9 +286,11 @@ export type PostWhereUniqueInput = Prisma.AtLeast<{
   category?: Prisma.StringFilter<"Post"> | string
   status?: Prisma.EnumPostStatusFilter<"Post"> | $Enums.PostStatus
   authorId?: Prisma.IntFilter<"Post"> | number
+  projectId?: Prisma.IntFilter<"Post"> | number
   createdAt?: Prisma.DateTimeFilter<"Post"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Post"> | Date | string
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
   votes?: Prisma.VoteListRelationFilter
 }, "id">
 
@@ -284,6 +301,7 @@ export type PostOrderByWithAggregationInput = {
   category?: Prisma.SortOrder
   status?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.PostCountOrderByAggregateInput
@@ -303,6 +321,7 @@ export type PostScalarWhereWithAggregatesInput = {
   category?: Prisma.StringWithAggregatesFilter<"Post"> | string
   status?: Prisma.EnumPostStatusWithAggregatesFilter<"Post"> | $Enums.PostStatus
   authorId?: Prisma.IntWithAggregatesFilter<"Post"> | number
+  projectId?: Prisma.IntWithAggregatesFilter<"Post"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Post"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Post"> | Date | string
 }
@@ -315,6 +334,7 @@ export type PostCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutPostsInput
+  project: Prisma.ProjectCreateNestedOneWithoutPostsInput
   votes?: Prisma.VoteCreateNestedManyWithoutPostInput
 }
 
@@ -325,6 +345,7 @@ export type PostUncheckedCreateInput = {
   category: string
   status?: $Enums.PostStatus
   authorId: number
+  projectId: number
   createdAt?: Date | string
   updatedAt?: Date | string
   votes?: Prisma.VoteUncheckedCreateNestedManyWithoutPostInput
@@ -338,6 +359,7 @@ export type PostUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutPostsNestedInput
+  project?: Prisma.ProjectUpdateOneRequiredWithoutPostsNestedInput
   votes?: Prisma.VoteUpdateManyWithoutPostNestedInput
 }
 
@@ -348,6 +370,7 @@ export type PostUncheckedUpdateInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   votes?: Prisma.VoteUncheckedUpdateManyWithoutPostNestedInput
@@ -360,6 +383,7 @@ export type PostCreateManyInput = {
   category: string
   status?: $Enums.PostStatus
   authorId: number
+  projectId: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -380,6 +404,7 @@ export type PostUncheckedUpdateManyInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -401,6 +426,7 @@ export type PostCountOrderByAggregateInput = {
   category?: Prisma.SortOrder
   status?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -408,6 +434,7 @@ export type PostCountOrderByAggregateInput = {
 export type PostAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrder
 }
 
 export type PostMaxOrderByAggregateInput = {
@@ -417,6 +444,7 @@ export type PostMaxOrderByAggregateInput = {
   category?: Prisma.SortOrder
   status?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -428,6 +456,7 @@ export type PostMinOrderByAggregateInput = {
   category?: Prisma.SortOrder
   status?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -435,6 +464,7 @@ export type PostMinOrderByAggregateInput = {
 export type PostSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrder
 }
 
 export type PostScalarRelationFilter = {
@@ -484,12 +514,50 @@ export type PostUncheckedUpdateManyWithoutAuthorNestedInput = {
   deleteMany?: Prisma.PostScalarWhereInput | Prisma.PostScalarWhereInput[]
 }
 
-export type EnumPostStatusFieldUpdateOperationsInput = {
-  set?: $Enums.PostStatus
+export type PostCreateNestedManyWithoutProjectInput = {
+  create?: Prisma.XOR<Prisma.PostCreateWithoutProjectInput, Prisma.PostUncheckedCreateWithoutProjectInput> | Prisma.PostCreateWithoutProjectInput[] | Prisma.PostUncheckedCreateWithoutProjectInput[]
+  connectOrCreate?: Prisma.PostCreateOrConnectWithoutProjectInput | Prisma.PostCreateOrConnectWithoutProjectInput[]
+  createMany?: Prisma.PostCreateManyProjectInputEnvelope
+  connect?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
+export type PostUncheckedCreateNestedManyWithoutProjectInput = {
+  create?: Prisma.XOR<Prisma.PostCreateWithoutProjectInput, Prisma.PostUncheckedCreateWithoutProjectInput> | Prisma.PostCreateWithoutProjectInput[] | Prisma.PostUncheckedCreateWithoutProjectInput[]
+  connectOrCreate?: Prisma.PostCreateOrConnectWithoutProjectInput | Prisma.PostCreateOrConnectWithoutProjectInput[]
+  createMany?: Prisma.PostCreateManyProjectInputEnvelope
+  connect?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
+}
+
+export type PostUpdateManyWithoutProjectNestedInput = {
+  create?: Prisma.XOR<Prisma.PostCreateWithoutProjectInput, Prisma.PostUncheckedCreateWithoutProjectInput> | Prisma.PostCreateWithoutProjectInput[] | Prisma.PostUncheckedCreateWithoutProjectInput[]
+  connectOrCreate?: Prisma.PostCreateOrConnectWithoutProjectInput | Prisma.PostCreateOrConnectWithoutProjectInput[]
+  upsert?: Prisma.PostUpsertWithWhereUniqueWithoutProjectInput | Prisma.PostUpsertWithWhereUniqueWithoutProjectInput[]
+  createMany?: Prisma.PostCreateManyProjectInputEnvelope
+  set?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
+  disconnect?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
+  delete?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
+  connect?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
+  update?: Prisma.PostUpdateWithWhereUniqueWithoutProjectInput | Prisma.PostUpdateWithWhereUniqueWithoutProjectInput[]
+  updateMany?: Prisma.PostUpdateManyWithWhereWithoutProjectInput | Prisma.PostUpdateManyWithWhereWithoutProjectInput[]
+  deleteMany?: Prisma.PostScalarWhereInput | Prisma.PostScalarWhereInput[]
+}
+
+export type PostUncheckedUpdateManyWithoutProjectNestedInput = {
+  create?: Prisma.XOR<Prisma.PostCreateWithoutProjectInput, Prisma.PostUncheckedCreateWithoutProjectInput> | Prisma.PostCreateWithoutProjectInput[] | Prisma.PostUncheckedCreateWithoutProjectInput[]
+  connectOrCreate?: Prisma.PostCreateOrConnectWithoutProjectInput | Prisma.PostCreateOrConnectWithoutProjectInput[]
+  upsert?: Prisma.PostUpsertWithWhereUniqueWithoutProjectInput | Prisma.PostUpsertWithWhereUniqueWithoutProjectInput[]
+  createMany?: Prisma.PostCreateManyProjectInputEnvelope
+  set?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
+  disconnect?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
+  delete?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
+  connect?: Prisma.PostWhereUniqueInput | Prisma.PostWhereUniqueInput[]
+  update?: Prisma.PostUpdateWithWhereUniqueWithoutProjectInput | Prisma.PostUpdateWithWhereUniqueWithoutProjectInput[]
+  updateMany?: Prisma.PostUpdateManyWithWhereWithoutProjectInput | Prisma.PostUpdateManyWithWhereWithoutProjectInput[]
+  deleteMany?: Prisma.PostScalarWhereInput | Prisma.PostScalarWhereInput[]
+}
+
+export type EnumPostStatusFieldUpdateOperationsInput = {
+  set?: $Enums.PostStatus
 }
 
 export type PostCreateNestedOneWithoutVotesInput = {
@@ -513,6 +581,7 @@ export type PostCreateWithoutAuthorInput = {
   status?: $Enums.PostStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  project: Prisma.ProjectCreateNestedOneWithoutPostsInput
   votes?: Prisma.VoteCreateNestedManyWithoutPostInput
 }
 
@@ -522,6 +591,7 @@ export type PostUncheckedCreateWithoutAuthorInput = {
   description: string
   category: string
   status?: $Enums.PostStatus
+  projectId: number
   createdAt?: Date | string
   updatedAt?: Date | string
   votes?: Prisma.VoteUncheckedCreateNestedManyWithoutPostInput
@@ -563,8 +633,58 @@ export type PostScalarWhereInput = {
   category?: Prisma.StringFilter<"Post"> | string
   status?: Prisma.EnumPostStatusFilter<"Post"> | $Enums.PostStatus
   authorId?: Prisma.IntFilter<"Post"> | number
+  projectId?: Prisma.IntFilter<"Post"> | number
   createdAt?: Prisma.DateTimeFilter<"Post"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Post"> | Date | string
+}
+
+export type PostCreateWithoutProjectInput = {
+  title: string
+  description: string
+  category: string
+  status?: $Enums.PostStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  author: Prisma.UserCreateNestedOneWithoutPostsInput
+  votes?: Prisma.VoteCreateNestedManyWithoutPostInput
+}
+
+export type PostUncheckedCreateWithoutProjectInput = {
+  id?: number
+  title: string
+  description: string
+  category: string
+  status?: $Enums.PostStatus
+  authorId: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutPostInput
+}
+
+export type PostCreateOrConnectWithoutProjectInput = {
+  where: Prisma.PostWhereUniqueInput
+  create: Prisma.XOR<Prisma.PostCreateWithoutProjectInput, Prisma.PostUncheckedCreateWithoutProjectInput>
+}
+
+export type PostCreateManyProjectInputEnvelope = {
+  data: Prisma.PostCreateManyProjectInput | Prisma.PostCreateManyProjectInput[]
+  skipDuplicates?: boolean
+}
+
+export type PostUpsertWithWhereUniqueWithoutProjectInput = {
+  where: Prisma.PostWhereUniqueInput
+  update: Prisma.XOR<Prisma.PostUpdateWithoutProjectInput, Prisma.PostUncheckedUpdateWithoutProjectInput>
+  create: Prisma.XOR<Prisma.PostCreateWithoutProjectInput, Prisma.PostUncheckedCreateWithoutProjectInput>
+}
+
+export type PostUpdateWithWhereUniqueWithoutProjectInput = {
+  where: Prisma.PostWhereUniqueInput
+  data: Prisma.XOR<Prisma.PostUpdateWithoutProjectInput, Prisma.PostUncheckedUpdateWithoutProjectInput>
+}
+
+export type PostUpdateManyWithWhereWithoutProjectInput = {
+  where: Prisma.PostScalarWhereInput
+  data: Prisma.XOR<Prisma.PostUpdateManyMutationInput, Prisma.PostUncheckedUpdateManyWithoutProjectInput>
 }
 
 export type PostCreateWithoutVotesInput = {
@@ -575,6 +695,7 @@ export type PostCreateWithoutVotesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutPostsInput
+  project: Prisma.ProjectCreateNestedOneWithoutPostsInput
 }
 
 export type PostUncheckedCreateWithoutVotesInput = {
@@ -584,6 +705,7 @@ export type PostUncheckedCreateWithoutVotesInput = {
   category: string
   status?: $Enums.PostStatus
   authorId: number
+  projectId: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -612,6 +734,7 @@ export type PostUpdateWithoutVotesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutPostsNestedInput
+  project?: Prisma.ProjectUpdateOneRequiredWithoutPostsNestedInput
 }
 
 export type PostUncheckedUpdateWithoutVotesInput = {
@@ -621,6 +744,7 @@ export type PostUncheckedUpdateWithoutVotesInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -631,6 +755,7 @@ export type PostCreateManyAuthorInput = {
   description: string
   category: string
   status?: $Enums.PostStatus
+  projectId: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -642,6 +767,7 @@ export type PostUpdateWithoutAuthorInput = {
   status?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  project?: Prisma.ProjectUpdateOneRequiredWithoutPostsNestedInput
   votes?: Prisma.VoteUpdateManyWithoutPostNestedInput
 }
 
@@ -651,6 +777,7 @@ export type PostUncheckedUpdateWithoutAuthorInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
+  projectId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   votes?: Prisma.VoteUncheckedUpdateManyWithoutPostNestedInput
@@ -662,6 +789,52 @@ export type PostUncheckedUpdateManyWithoutAuthorInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
+  projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PostCreateManyProjectInput = {
+  id?: number
+  title: string
+  description: string
+  category: string
+  status?: $Enums.PostStatus
+  authorId: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type PostUpdateWithoutProjectInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  author?: Prisma.UserUpdateOneRequiredWithoutPostsNestedInput
+  votes?: Prisma.VoteUpdateManyWithoutPostNestedInput
+}
+
+export type PostUncheckedUpdateWithoutProjectInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
+  authorId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  votes?: Prisma.VoteUncheckedUpdateManyWithoutPostNestedInput
+}
+
+export type PostUncheckedUpdateManyWithoutProjectInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumPostStatusFieldUpdateOperationsInput | $Enums.PostStatus
+  authorId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -704,9 +877,11 @@ export type PostSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   category?: boolean
   status?: boolean
   authorId?: boolean
+  projectId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
   votes?: boolean | Prisma.Post$votesArgs<ExtArgs>
   _count?: boolean | Prisma.PostCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["post"]>
@@ -718,9 +893,11 @@ export type PostSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   category?: boolean
   status?: boolean
   authorId?: boolean
+  projectId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["post"]>
 
 export type PostSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -730,9 +907,11 @@ export type PostSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   category?: boolean
   status?: boolean
   authorId?: boolean
+  projectId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["post"]>
 
 export type PostSelectScalar = {
@@ -742,27 +921,32 @@ export type PostSelectScalar = {
   category?: boolean
   status?: boolean
   authorId?: boolean
+  projectId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type PostOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "category" | "status" | "authorId" | "createdAt" | "updatedAt", ExtArgs["result"]["post"]>
+export type PostOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "category" | "status" | "authorId" | "projectId" | "createdAt" | "updatedAt", ExtArgs["result"]["post"]>
 export type PostInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
   votes?: boolean | Prisma.Post$votesArgs<ExtArgs>
   _count?: boolean | Prisma.PostCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PostIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }
 export type PostIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }
 
 export type $PostPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Post"
   objects: {
     author: Prisma.$UserPayload<ExtArgs>
+    project: Prisma.$ProjectPayload<ExtArgs>
     votes: Prisma.$VotePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -772,6 +956,7 @@ export type $PostPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     category: string
     status: $Enums.PostStatus
     authorId: number
+    projectId: number
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["post"]>
@@ -1169,6 +1354,7 @@ readonly fields: PostFieldRefs;
 export interface Prisma__PostClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   author<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  project<T extends Prisma.ProjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProjectDefaultArgs<ExtArgs>>): Prisma.Prisma__ProjectClient<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   votes<T extends Prisma.Post$votesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Post$votesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1205,6 +1391,7 @@ export interface PostFieldRefs {
   readonly category: Prisma.FieldRef<"Post", 'String'>
   readonly status: Prisma.FieldRef<"Post", 'PostStatus'>
   readonly authorId: Prisma.FieldRef<"Post", 'Int'>
+  readonly projectId: Prisma.FieldRef<"Post", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Post", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Post", 'DateTime'>
 }

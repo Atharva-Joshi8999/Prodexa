@@ -2,48 +2,87 @@
 
 generator client {
   provider = "prisma-client"
-  url= env("DATABASE_URL")
-  output = "../generated/client"
+  output   = "../generated/client"
 }
 
 datasource db {
   provider = "postgresql"
-  
+  url      = env("DATABASE_URL")
 }
 
- model User {
-  id Int @id @default(autoincrement())
+model User {
+  id         Int    @id @default(autoincrement())
   clerkUserId String @unique
-  email String @unique
-  name String
-  image String
-  posts Post[]
-  votes Vote[]
-  role Role @default(User)
+  email      String @unique
+  name       String
+  image      String
+  posts      Post[]
+  votes      Vote[]
+  role       Role   @default(User)
+
+  ownedProjects      Project[]
+  projectMemberships ProjectMember[]
 
   @@map("users")
 }
 
-model Post {
-  id Int @id @default(autoincrement())
-  title String
-  description String
-  category String
-  status PostStatus @default(under_review)
-  author User @relation(fields: [authorId], references: [id])
-  authorId Int
-  votes Vote[]
+model Project {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  slug        String   @unique
+  owner       User     @relation(fields: [ownerId], references: [id])
+  ownerId     Int
+  isPublic    Boolean  @default(true)
+
+  brandingColor    String?
+  customCategories String[] @default([])
+
+  posts   Post[]
+  members ProjectMember[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("projects")
+}
+
+model ProjectMember {
+  id        Int         @id @default(autoincrement())
+  project   Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId Int
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  role      ProjectRole @default(MEMBER)
+
+  createdAt DateTime @default(now())
+
+  @@unique([projectId, userId])
+  @@map("project_members")
+}
+
+model Post {
+  id          Int        @id @default(autoincrement())
+  title       String
+  description String
+  category    String
+  status      PostStatus @default(under_review)
+  author      User       @relation(fields: [authorId], references: [id])
+  authorId    Int
+  project     Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId   Int
+  votes       Vote[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 
   @@map("posts")
 }
 
 model Vote {
-  id Int @id @default(autoincrement())
-  user User @relation(fields: [userId], references: [id])
+  id     Int  @id @default(autoincrement())
+  user   User @relation(fields: [userId], references: [id])
   userId Int
-  post Post @relation(fields: [postId], references: [id])
+  post   Post @relation(fields: [postId], references: [id])
   postId Int
 
   @@unique([userId, postId])
@@ -51,13 +90,19 @@ model Vote {
 }
 
 enum Role {
-    User 
-    Admin
+  User
+  Admin
 }
 
 enum PostStatus {
-    under_review
-    planned
-    in_progress 
-    completed
+  under_review
+  planned
+  in_progress
+  completed
+}
+
+enum ProjectRole {
+  VIEWER
+  MEMBER
+  ADMIN
 }

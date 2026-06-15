@@ -175,7 +175,7 @@ export default function HomePage() {
               size="lg"
               className="btn-primary-glow shimmer bg-gradient-to-r from-indigo-600 to-blue-600 text-white border-0 h-12 px-8 text-[15px] font-semibold"
             >
-              <Link href="/feedback/new">
+              <Link href="/auth/sign-up">
                 Start for Free
                 <ArrowRightIcon className="ml-2 h-4 w-4" />
               </Link>
@@ -425,7 +425,7 @@ export default function HomePage() {
                 size="lg"
                 className="btn-primary-glow shimmer bg-gradient-to-r from-indigo-600 to-blue-600 text-white border-0 h-12 px-8 text-[15px] font-semibold"
               >
-                <Link href="/feedback/new">
+                <Link href="/auth/sign-up">
                   Get Started Free
                   <ChevronRight className="ml-1 h-4 w-4" />
                 </Link>
@@ -440,7 +440,7 @@ export default function HomePage() {
               </Button>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              No credit card required · Free plan forever · Cancel anytime
+
             </p>
           </div>
         </div>
